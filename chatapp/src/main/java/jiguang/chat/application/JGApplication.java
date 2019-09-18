@@ -12,6 +12,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import cn.jpush.android.api.JPushInterface;
 import cn.jpush.im.android.api.JMessageClient;
 import cn.jpush.im.android.api.model.Conversation;
 import cn.jpush.im.android.api.model.GroupInfo;
@@ -32,6 +33,8 @@ import jiguang.chat.utils.imagepicker.view.CropImageView;
 
 //使用的数据库需要继承这个application
 public class JGApplication extends com.activeandroid.app.Application {
+
+
     public static final String CONV_TITLE = "conv_title";
     public static final int IMAGE_MESSAGE = 1;
     public static final int TAKE_PHOTO_MESSAGE = 2;
@@ -127,13 +130,19 @@ public class JGApplication extends com.activeandroid.app.Application {
 
     @Override
     public void onCreate() {
+
         super.onCreate();
+
+
         context = getApplicationContext();
         THUMP_PICTURE_DIR = context.getFilesDir().getAbsolutePath() + "/JChatDemo";
         StorageUtil.init(context, null);
         Fresco.initialize(getApplicationContext());
         SDKInitializer.initialize(getApplicationContext());
         locationService = new LocationService(getApplicationContext());
+
+        JPushInterface.setDebugMode(true); 	// 设置开启日志,发布时请关闭日志
+        JPushInterface.init(this);     		// 初始化 JPush
 
         JMessageClient.init(getApplicationContext(), true);
         JMessageClient.setDebugMode(true);

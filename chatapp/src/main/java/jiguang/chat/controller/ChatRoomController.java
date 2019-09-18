@@ -44,7 +44,7 @@ public class ChatRoomController implements AdapterView.OnItemClickListener, View
         initChatRoomAdapter();
     }
 
-    private void initChatRoomAdapter() {
+    private void initChatRoomAdapter() {                                                         //初始化聊天
         Dialog loadingDialog = DialogCreator.createLoadingDialog(mContext, "正在加载...");
         loadingDialog.show();
         ChatRoomManager.getChatRoomListByApp(0, PAGE_COUNT, new RequestCallback<List<ChatRoomInfo>>() {
@@ -65,7 +65,7 @@ public class ChatRoomController implements AdapterView.OnItemClickListener, View
 
 
     @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {            //点击分组的时候
         Object itemAtPosition = parent.getItemAtPosition(position);
         if (itemAtPosition != null && itemAtPosition instanceof ChatRoomInfo) {
             ChatRoomInfo info = (ChatRoomInfo) itemAtPosition;

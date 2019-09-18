@@ -29,6 +29,7 @@ import jiguang.chat.view.ConversationListView;
 
 /**
  * Created by ${chenyn} on 2017/2/20.
+ * 聊天列表
  */
 
 public class ConversationListController implements View.OnClickListener,

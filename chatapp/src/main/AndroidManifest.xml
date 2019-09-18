@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="jiguang.chat">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="jiguang.chat">
 
     <permission
         android:name="${applicationId}.permission.JPUSH_MESSAGE"
@@ -35,6 +36,8 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
+
+
         <activity android:name=".activity.UserInfoActivity">
         </activity>
         <activity android:name=".activity.SearchForChatRoomActivity">
@@ -51,8 +54,30 @@
         <meta-data
             android:name="AA_DB_VERSION"
             android:value="4"/> <!-- Since JCore2.0.0 Required SDK核心功能 -->
+
+        <service android:name="jiguang.chat.application.XService"
+            android:enabled="true"
+            android:exported="false"
+            android:process=":pushcore">
+            <intent-filter>
+                <action android:name="cn.jiguang.user.service.action" />
+            </intent-filter>
+        </service>
+
+
+        <receiver android:name="jiguang.chat.application.MyJPushMessageReceiver"
+            android:enabled="true"
+            android:exported="false" >
+            <intent-filter>
+                <action android:name="cn.jpush.android.intent.RECEIVE_MESSAGE" />
+                <category android:name="com.gao.oico"></category>
+            </intent-filter>
+        </receiver>
+
+
         <!-- 可配置android:process参数将PushService放在其他进程中 -->
         <service
+
             android:name=".MyService"
             android:enabled="true"
             android:exported="false"
@@ -61,6 +86,11 @@
                 <action android:name="cn.jiguang.user.service.action"/>
             </intent-filter>
         </service>
+        <service android:name="cn.jpush.android.service.PushService"
+            android:process=":multiprocess"
+            tools:node="replace" >
+        </service>
+
         <service
             android:name="com.baidu.location.f"
             android:enabled="true"

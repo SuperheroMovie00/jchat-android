@@ -36,7 +36,7 @@ public class LoginController implements View.OnClickListener {
     }
 
     private boolean isContainChinese(String str) {
-        Pattern pattern = Pattern.compile("[\u4e00-\u9fa5]");
+        Pattern pattern = Pattern.compile("[\u4e00-\u9fa5]");         //判断是否是中文
         Matcher matcher = pattern.matcher(str);
         if (matcher.find()) {
             return true;
@@ -45,7 +45,7 @@ public class LoginController implements View.OnClickListener {
     }
 
     private boolean whatStartWith(String str) {
-        Pattern pattern = Pattern.compile("^([A-Za-z]|[0-9])");
+        Pattern pattern = Pattern.compile("^([A-Za-z]|[0-9])");        //判断是否是以数字或者字母开头
         Matcher matcher = pattern.matcher(str);
         if (matcher.find()) {
             return true;
@@ -54,7 +54,7 @@ public class LoginController implements View.OnClickListener {
     }
 
     private boolean whatContain(String str) {
-        Pattern pattern = Pattern.compile("^[0-9a-zA-Z][a-zA-Z0-9_\\-@\\.]{3,127}$");
+        Pattern pattern = Pattern.compile("^[0-9a-zA-Z][a-zA-Z0-9_\\-@\\.]{3,127}$");         // 只能含有: 数字 字母 下划线 . - @
         Matcher matcher = pattern.matcher(str);
         if (matcher.find()) {
             return true;

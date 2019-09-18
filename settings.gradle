@@ -1,1 +1,1 @@
-include ':chatapp',':reclib-qq', ':reclib-testemoticons', ':emoji'
+include ':chatapp', ':reclib-qq', ':reclib-testemoticons', ':emoji'

@@ -208,7 +208,7 @@ public class SendFileController implements View.OnClickListener, ViewPager.OnPag
                                         String substring = path.substring(path.lastIndexOf(".") + 1, path.length());
                                         FileContent content = new FileContent(file, fileName);
                                         content.setStringExtra("fileType", substring);
-//                                        content.setStringExtra("fileType", entry.getKey().toString());
+//                                      content.setStringExtra("fileType", entry.getKey().toString());
                                         content.setNumberExtra("fileSize", file.length());
                                         Message msg = mConv.createSendMessage(content);
                                         if (mIndex.get() < mSize) {
